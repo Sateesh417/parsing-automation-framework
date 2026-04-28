@@ -1,3 +1,5 @@
+![CI](https://github.com/Sateesh417/parsing-automation-framework/actions/workflows/main.yml/badge.svg)
+
 # Parsing Automation Framework
 
 Java + RestAssured + MongoDB framework for
