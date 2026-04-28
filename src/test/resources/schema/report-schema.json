@@ -1,0 +1,17 @@
+{
+  "type": "object",
+  "properties": {
+    "report": {
+      "type": "object",
+      "properties": {
+        "parsed_data": {
+          "type": "object",
+          "properties": {
+            "patient_name": { "type": "string" }
+          },
+          "required": ["patient_name"]
+        }
+      }
+    }
+  }
+}
