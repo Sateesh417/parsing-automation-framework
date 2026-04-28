@@ -1,0 +1,25 @@
+name: Parsing Automation CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+
+      - name: Run Smoke Suite
+        run: mvn test -DsuiteXmlFile=testng/smoke.xml
