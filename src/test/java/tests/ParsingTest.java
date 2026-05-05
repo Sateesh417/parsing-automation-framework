@@ -23,7 +23,10 @@ public class ParsingTest extends BaseTest {
     // =============================
     // Smoke Test Entry Point
     // =============================
-    @Test
+    @Test(
+            retryAnalyzer=
+                    utils.RetryAnalyzer.class
+    )
     @Description(
             "Validate end-to-end document parsing flow"
     )
@@ -34,6 +37,7 @@ public class ParsingTest extends BaseTest {
         testUploadAPI(
                 "DharmendraBhambu_organized.pdf"
         );
+        Assert.fail("Force failure");
 
     }
 
@@ -41,8 +45,8 @@ public class ParsingTest extends BaseTest {
     // =============================
     // Reusable Core Method
     // =============================
-    public void testUploadAPI(
-            String pdfFile){
+
+    public void testUploadAPI(String pdfFile){
 
         List<String> warnings =
                 new ArrayList<>();

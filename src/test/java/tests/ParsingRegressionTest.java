@@ -22,7 +22,10 @@ public class ParsingRegressionTest {
     ParsingTest parser =
             new ParsingTest();
 
-    @Test(dataProvider="pdfFiles")
+    @Test(dataProvider="pdfFiles",
+    retryAnalyzer=
+    utils.RetryAnalyzer.class
+    )
     @Description(
             "Run parsing regression for multiple PDFs"
     )
