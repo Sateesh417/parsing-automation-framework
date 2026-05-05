@@ -1,51 +1,34 @@
 package constants;
 
-public class Config {
+public class ConfigOld {
 
-    // 👉 ENV control (can be overridden from CI)
-    public static final String ENV =
-            System.getenv("ENV") != null ?
-                    System.getenv("ENV") : "dev";
+    // 👉 ENV control
+    public static final String ENV = "dev";  // change to "prod" when needed
 
-
-    // 👉 URLs (fallback only)
+    // 👉 URLs
     public static final String DEV_URL = "https://medsensedev-c5fbg8htfbhtgqck.centralindia-01.azurewebsites.net";
     public static final String PROD_URL = "https://api.yira.ai";
 
+    // 👉 API Keys
+    public static final String DEV_API_KEY = "YOUR_KEY";
+    public static final String PROD_API_KEY = "YOUR_KEY";
 
-    // 👉 API Keys (fallback only — DO NOT put real keys here)
-    public static final String DEV_API_KEY = "LOCAL_DEV_KEY";
-    public static final String PROD_API_KEY = "LOCAL_PROD_KEY";
-
-
-    // 👉 TenantIds
+    // TenantIds
     public static final String PROD_TENANT_ID = "testing-id-1-1ae6";
     public static final String DEV_TENANT_ID = "dev-testing-db64";
 
-
-    // 👉 ProjectIds
+    // ProjectIds
     public static final String PROD_PROJECT_ID = "bd760a58-2d44-4089-b471-cc046ea0a70d";
     public static final String DEV_PROJECT_ID = "517abd93-87a9-44a1-93d4-72eb773fa638";
 
+    public static final String WEBHOOK_URL = "https://yirahealthcampapidev.azurewebsites.net/api/Account/webhooktest";
 
-    public static final String WEBHOOK_URL =
-            "https://yirahealthcampapidev.azurewebsites.net/api/Account/webhooktest";
-
-
-    // 👉 DB Names
     public static final String DEV_DB = "MedSenseDev";
     public static final String PROD_DB = "MEDPARSER";
 
     public static final String COLLECTION = "parsing_jobs";
 
-
-    // 👉 Mongo fallback (DO NOT put real password)
-    public static final String MONGO_URL = "LOCAL_MONGO_URL";
-
-
-    // =============================
-    // URLs
-    // =============================
+    public static final String MONGO_URL = "mongodb+srv://username:password@cluster...";
 
     public static String getUploadUrl(String tenantId, String projectId) {
         return getApiPrefix() + "/tenants/" + tenantId + "/projects/" + projectId + "/reports";
@@ -56,34 +39,23 @@ public class Config {
     }
 
     public static String getPdfPath(String fileName){
+
         return System.getProperty("user.dir")
                 + "/src/test/resources/files/"
                 + fileName;
     }
-
-
-    // =============================
-    // Mongo
-    // =============================
 
     public static String getMongoUrl(){
 
         String mongo = System.getenv("MONGO_URL");
 
         if(mongo == null){
-            System.out.println("⚠ Using LOCAL MONGO URL");
             return MONGO_URL;
         }
 
-        System.out.println("✅ Using SECRET MONGO URL");
         return mongo;
     }
-
-
-    // =============================
-    // Base URL
-    // =============================
-
+    //  Base URL
     public static String getBaseUrl() {
 
         String url = System.getenv(
@@ -92,20 +64,23 @@ public class Config {
         );
 
         if(url == null){
-            System.out.println("⚠ Using LOCAL BASE URL");
             return ENV.equalsIgnoreCase("prod") ?
                     PROD_URL : DEV_URL;
         }
 
-        System.out.println("✅ Using SECRET BASE URL");
         return url;
     }
+   /* public static String getBaseUrl() {
 
+        switch (ENV.toLowerCase()) {
+            case "prod":
+                return PROD_URL;
+            default:
+                return DEV_URL;
+        }
+    }*/
 
-    // =============================
-    // API PREFIX
-    // =============================
-
+    // 👉 API PREFIX (IMPORTANT)
     public static String getApiPrefix() {
 
         switch (ENV.toLowerCase()) {
@@ -116,11 +91,7 @@ public class Config {
         }
     }
 
-
-    // =============================
-    // API KEY
-    // =============================
-
+    //  API KEY
     public static String getApiKey() {
 
         String key = System.getenv(
@@ -129,20 +100,23 @@ public class Config {
         );
 
         if(key == null){
-            System.out.println("⚠ Using LOCAL API KEY");
             return ENV.equalsIgnoreCase("prod") ?
                     PROD_API_KEY : DEV_API_KEY;
         }
 
-        System.out.println("✅ Using SECRET API KEY");
         return key;
     }
+  /*  public static String getApiKey() {
 
+        switch (ENV.toLowerCase()) {
+            case "prod":
+                return PROD_API_KEY;
+            default:
+                return DEV_API_KEY;
+        }
+    }*/
 
-    // =============================
-    // Tenant ID
-    // =============================
-
+    // Tenet ID
     public static String getTenantId() {
 
         switch (ENV.toLowerCase()) {
@@ -153,11 +127,7 @@ public class Config {
         }
     }
 
-
-    // =============================
-    // Project ID
-    // =============================
-
+    // Project ID's
     public static String getProjectId() {
 
         switch (ENV.toLowerCase()) {
@@ -168,11 +138,7 @@ public class Config {
         }
     }
 
-
-    // =============================
     // DB Name
-    // =============================
-
     public static String getMongoDb() {
 
         switch (ENV.toLowerCase()) {
@@ -182,5 +148,7 @@ public class Config {
                 return DEV_DB;
         }
     }
+
+
 
 }

@@ -1,7 +1,7 @@
 package tests;
 
 import base.BaseTest;
-import constants.Config;
+import constants.ConfigOld;
 import io.qameta.allure.*;
 import io.restassured.response.Response;
 
@@ -56,7 +56,7 @@ public class ParsingTest extends BaseTest {
         // 1 Upload
         // =============================
         String pdfPath =
-                Config.getPdfPath(
+                ConfigOld.getPdfPath(
                         pdfFile
                 );
 

@@ -1,6 +1,6 @@
 package utils;
 
-import constants.Config;
+import constants.ConfigOld;
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
 
@@ -16,9 +16,9 @@ public class ApiClient {
 
         Response response =
                 given()
-                        .baseUri(Config.getBaseUrl())
+                        .baseUri(ConfigOld.getBaseUrl())
                         .header("X-API-Key",
-                                Config.getApiKey())
+                                ConfigOld.getApiKey())
                         .contentType("multipart/form-data")
                         .multiPart(
                                 "file",
@@ -27,9 +27,9 @@ public class ApiClient {
                         )
                         .when()
                         .post(
-                                Config.getUploadUrl(
-                                        Config.getTenantId(),
-                                        Config.getProjectId()
+                                ConfigOld.getUploadUrl(
+                                        ConfigOld.getTenantId(),
+                                        ConfigOld.getProjectId()
                                 )
                         );
 
@@ -79,15 +79,15 @@ public class ApiClient {
 
                 response=
                         given()
-                                .baseUri(Config.getBaseUrl())
+                                .baseUri(ConfigOld.getBaseUrl())
                                 .header(
                                         "x-api-key",
-                                        Config.getApiKey()
+                                        ConfigOld.getApiKey()
                                 )
                                 .when()
                                 .get(
-                                        Config.getFinalUrl(
-                                                Config.getTenantId(),
+                                        ConfigOld.getFinalUrl(
+                                                ConfigOld.getTenantId(),
                                                 reportId
                                         )
                                 );

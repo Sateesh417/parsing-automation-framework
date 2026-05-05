@@ -1,7 +1,7 @@
 package tests;
 
 import base.BaseTest;
-import constants.Config;
+import constants.ConfigOld;
 
 import io.restassured.response.Response;
 
@@ -21,7 +21,7 @@ public class PdfJsonComparisonTest extends BaseTest {
     public void comparePdfVsJson() throws Exception {
 
         String pdfPath =
-                Config.getPdfPath(
+                ConfigOld.getPdfPath(
                         "DharmendraBhambu_organized.pdf"
                 );
 

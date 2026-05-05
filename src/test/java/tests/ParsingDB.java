@@ -1,7 +1,7 @@
 package tests;
 
 import base.BaseTest;
-import constants.Config;
+import constants.ConfigOld;
 import io.restassured.response.Response;
 import org.bson.Document;
 import org.testng.Assert;
@@ -18,8 +18,8 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 
 public class ParsingDB extends BaseTest {
 
-    String tenantId = Config.getTenantId();
-    String projectId = Config.getProjectId();
+    String tenantId = ConfigOld.getTenantId();
+    String projectId = ConfigOld.getProjectId();
 
     @Test
     public void testFullFlow() throws Exception {
@@ -33,12 +33,12 @@ public class ParsingDB extends BaseTest {
         // 1. UPLOAD API
         // =============================
         Response uploadResponse = given()
-                .header("X-API-Key", Config.getApiKey())
+                .header("X-API-Key", ConfigOld.getApiKey())
                 .contentType("multipart/form-data")
-                .queryParam("webhook_url", Config.WEBHOOK_URL)
+                .queryParam("webhook_url", ConfigOld.WEBHOOK_URL)
                 .multiPart("file", file, "application/pdf")
                 .when()
-                .post(Config.getApiPrefix() + "/tenants/" + tenantId + "/projects/" + projectId + "/reports");
+                .post(ConfigOld.getApiPrefix() + "/tenants/" + tenantId + "/projects/" + projectId + "/reports");
 
         uploadResponse.then().statusCode(200);
 
@@ -164,9 +164,9 @@ public class ParsingDB extends BaseTest {
             for (int i = 0; i < 10; i++) {
 
                 finalResponse = given()
-                        .header("X-API-Key", Config.getApiKey())
+                        .header("X-API-Key", ConfigOld.getApiKey())
                         .when()
-                        .get(Config.getApiPrefix() + "/tenants/" + tenantId + "/reports/" + reportId);
+                        .get(ConfigOld.getApiPrefix() + "/tenants/" + tenantId + "/reports/" + reportId);
 
                 if (finalResponse.getStatusCode() == 200) break;
 

@@ -1,7 +1,7 @@
 package utils;
 
 import com.mongodb.client.*;
-import constants.Config;
+import constants.ConfigOld;
 import io.qameta.allure.Step;
 import org.bson.Document;
 
@@ -11,13 +11,13 @@ public class MongoUtils {
 
     // ✅ Create only once
     private static final MongoClient client =
-            MongoClients.create(Config.MONGO_URL);
+            MongoClients.create(ConfigOld.MONGO_URL);
 
     private static final MongoDatabase db =
-            client.getDatabase(Config.getMongoDb());
+            client.getDatabase(ConfigOld.getMongoDb());
 
     private static final MongoCollection<Document> collection =
-            db.getCollection(Config.COLLECTION);
+            db.getCollection(ConfigOld.COLLECTION);
 
 
     // ✅ MAIN METHOD (USE THIS ONLY)

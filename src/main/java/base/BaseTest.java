@@ -1,6 +1,6 @@
 package base;
 
-import constants.Config;
+import constants.ConfigOld;
 import io.restassured.RestAssured;
 import org.testng.annotations.BeforeClass;
 
@@ -10,11 +10,11 @@ public class BaseTest {
     public void setup(){
 
         RestAssured.baseURI=
-                Config.getBaseUrl();
+                ConfigOld.getBaseUrl();
 
         System.out.println(
                 "Running ENV: "+
-                        Config.ENV
+                        ConfigOld.ENV
         );
 
         System.out.println(
