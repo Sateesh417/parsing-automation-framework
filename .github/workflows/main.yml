@@ -5,7 +5,6 @@ on:
     branches:
       - main
   workflow_dispatch:
-  
 
 jobs:
   smoke-test:
@@ -21,8 +20,11 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-             # - name: Run Smoke Suite
-      #   run: mvn test -DsuiteXmlFile=testng/smoke.xml
-
-      - name: Build Project
-        run: mvn clean test -DskipTests
+      - name: Run Smoke Tests
+        run: mvn test -DsuiteXmlFile=testng/smoke.xml
+        env:
+          DEV_API_KEY: ${{ secrets.DEV_API_KEY }}
+          PROD_API_KEY: ${{ secrets.PROD_API_KEY }}
+          DEV_URL: ${{ secrets.DEV_URL }}
+          PROD_URL: ${{ secrets.PROD_URL }}
+          MONGO_URL: ${{ secrets.MONGO_URL }}
